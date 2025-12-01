@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepo extends JpaRepository<UserDetails, Long> {
-    UserDetails findByFirstNameIgnoreCase(String firstName);
+    UserDetails findByuserMail(String userMail);
 }
 

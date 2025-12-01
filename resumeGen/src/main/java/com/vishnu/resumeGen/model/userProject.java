@@ -10,18 +10,17 @@ public class userProject {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long proj_id;
     private String projectName;
-    @ElementCollection
-    private List<String> projectDescription;
+    private String projectDescription;
 
     private String projectTechStack;
     private String projectToolsUsed;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_mail", referencedColumnName = "userMail")
     private UserDetails userDetails;
     public userProject() {
     }
 
-    public userProject(String projectName, List<String> projectDescription, String projectTechStack, String projectToolsUsed, String projectGitHubLink) {
+    public userProject(String projectName, String projectDescription, String projectTechStack, String projectToolsUsed, String projectGitHubLink) {
         this.projectName = projectName;
         this.projectDescription = projectDescription;
         this.projectTechStack = projectTechStack;
@@ -40,11 +39,11 @@ public class userProject {
         this.projectName = projectName;
     }
 
-    public List<String> getProjectDescription() {
+    public String getProjectDescription() {
         return projectDescription;
     }
 
-    public void setProjectDescription(List<String> projectDescription) {
+    public void setProjectDescription(String projectDescription) {
         this.projectDescription = projectDescription;
     }
 
@@ -70,5 +69,9 @@ public class userProject {
 
     public void setProjectGitHubLink(String projectGitHubLink) {
         this.projectGitHubLink = projectGitHubLink;
+    }
+
+    public void setUserDetails(UserDetails userDetails) {
+        this.userDetails = userDetails;
     }
 }

@@ -1,5 +1,7 @@
 package com.vishnu.resumeGen.controller;
 
+import com.vishnu.resumeGen.model.UserDetails;
+import com.vishnu.resumeGen.model.userProject;
 import com.vishnu.resumeGen.service.UserService;
 
 import org.springframework.http.ResponseEntity;
@@ -19,7 +21,8 @@ public class OllamaController {
     }
 
     @PostMapping("/Ollama")
-    public ResponseEntity<String> getResponse(@RequestBody String response) {
-        return ResponseEntity.ok(response);
+    public ResponseEntity<UserDetails> getResponse(@RequestBody UserDetails userDetails) {
+        UserDetails aiResponce = userService.autoSaveandAutoEnhancedDescription(userDetails);
+        return ResponseEntity.ok(aiResponce);
     }
 }

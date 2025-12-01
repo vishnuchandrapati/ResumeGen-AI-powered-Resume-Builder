@@ -13,7 +13,7 @@ public class userExperience {
     private int yearsOfExperience;
     private String userResponsibilities;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id") // FK column in user_certification table
+    @JoinColumn(name = "user_mail", referencedColumnName = "userMail") // FK column in user_certification table
     private UserDetails userDetails;
     public userExperience() {
     }
@@ -55,5 +55,9 @@ public class userExperience {
 
     public void setUserResponsibilities(String userResponsibilities) {
         this.userResponsibilities = userResponsibilities;
+    }
+
+    public void setUserDetails(UserDetails userDetails) {
+        this.userDetails = userDetails;
     }
 }
