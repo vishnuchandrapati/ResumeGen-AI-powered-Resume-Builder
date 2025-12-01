@@ -1,6 +1,7 @@
 package com.vishnu.resumeGen.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
 
 import java.util.List;
@@ -13,6 +14,8 @@ public class UserDetails {
     private String firstName;
     private String lastName;
     private int userAge;
+    @Email
+    @Column(unique = true, nullable = false)
     private String userMail;
     @Pattern(regexp = "\\d{10}", message = "Mobile Number must be 10 digits")
     private String mobileNumber;

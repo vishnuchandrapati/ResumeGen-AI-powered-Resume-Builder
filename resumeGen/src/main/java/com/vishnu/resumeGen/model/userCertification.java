@@ -14,7 +14,7 @@ public class userCertification {
     private String validityDate;
     private String licenceNumber;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id") // FK column in user_certification table
+    @JoinColumn(name = "user_mail", referencedColumnName = "userMail") // FK column in user_certification table
     private UserDetails userDetails;
     public userCertification() {
     }
@@ -67,5 +67,9 @@ public class userCertification {
 
     public void setLicenceNumber(String licenceNumber) {
         this.licenceNumber = licenceNumber;
+    }
+
+    public void setUserDetails(UserDetails userDetails) {
+        this.userDetails = userDetails;
     }
 }

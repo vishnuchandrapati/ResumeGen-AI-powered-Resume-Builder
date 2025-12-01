@@ -29,36 +29,4 @@ public class LoginController {
         }
         return ResponseEntity.ok("Logged In successfully");
     }
-
-    //  private final UserDetailsService userDetailsService;
-
-//    private final UserLoginService userLoginService;
-
-//    public LoginController(UserLoginService userLoginService) {
-//        this.userLoginService = userLoginService;
-//    }
-
-
-   //     public LoginController(UserDetailsService userDetailsService) {
-     //   this.userDetailsService = userDetailsService;
-  //  }
-//    @PostMapping("/login")
-//    public ResponseEntity<UserLogin> userLogin(@RequestBody UserLogin userLogin){
-//        UserLogin savedLogin = userLoginService.saveLoginDetails((userLogin));
-//        return ResponseEntity.ok(savedLogin);
-//    }
-
-//    @PostMapping("/userDetails")
-//    public UserDetails createUser(@Valid @RequestBody UserDetails userDetails){
-//
-//        return userDetailsService.saveUser(userDetails);
-//    }
-//
-//    @GetMapping("/userDetails")
-//    public ResponseEntity<UserDetails> getByName(@RequestParam String firstName) {
-//        return userDetailsService.getUserByName(firstName)
-//                .map(ResponseEntity::ok)
-//                .orElse(ResponseEntity.notFound().build());
-//    }
-
 }

@@ -15,8 +15,11 @@ public class userEducation {
     private int graduationYear;
     private String userCgpa;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id") // FK column in user_certification table
+    @JoinColumn(name = "user_mail", referencedColumnName = "userMail") // FK column in user_certification table
     private UserDetails userDetails;
+
+
+
     public userEducation() {
     }
 
@@ -66,6 +69,10 @@ public class userEducation {
 
     public void setUserCgpa(String userCgpa) {
         this.userCgpa = userCgpa;
+    }
+
+    public void setUserDetails(UserDetails userDetails) {
+        this.userDetails = userDetails;
     }
 
 }
