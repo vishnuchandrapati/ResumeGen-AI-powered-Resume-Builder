@@ -15,7 +15,6 @@ public class RegisterController {
     public RegisterController(RegisterService registerService) {
         this.registerService = registerService;
     }
-
     @PostMapping("/new")
     public ResponseEntity<String> registerUser(@RequestBody UserRegistration user) {
         if(user.getUserMail()==null || user.getUserMail().isEmpty()){

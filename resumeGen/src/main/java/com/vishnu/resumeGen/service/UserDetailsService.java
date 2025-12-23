@@ -19,7 +19,7 @@ public class UserDetailsService {
 
 
 
-    public UserDetails saveUser(@RequestBody UserDetails userDetails){
+    public UserDetails saveUser(UserDetails userDetails){
         if (userDetails.getUserEducationList() != null) {
             for (userEducation edu : userDetails.getUserEducationList()) {
                 edu.setUserDetails(userDetails);

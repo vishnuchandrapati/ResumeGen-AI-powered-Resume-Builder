@@ -27,12 +27,25 @@ public class UserService {
         if(userDetails.getUserProjectsList()!=null){
             for(userProject project1 : userDetails.getUserProjectsList()){
                 String userDesc = project1.getProjectDescription();
-                String enhancedDesc = chatClient.prompt( "Rewrite the following project description in 3 bullet points for resume to improve its ATS score. " +
-                                "Do NOT show any thinking steps or explanations. Only output the final improved description."  +
-                                userDesc)
-                        .call()
-                        .content();
-                project1.setProjectDescription(enhancedDesc);
+                try {
+                    String enhancedDesc = chatClient.prompt("Rewrite the following project description as 3 concise bullet points\n" +
+                                    "            suitable for a software engineer resume to improve its ATS score.\n" +
+                                    "            - Use strong action verbs.\n" +
+                                    "            - Include measurable impact where possible.\n" +
+                                    "            - Keep it ATS-friendly (simple formatting, no tables, no emojis).\n" +
+                                    "            - Do NOT show any thinking steps or explanations.\n" +
+                                    "            Only output the final improved bullet points.\n" +
+                                    "\n" +
+                                    "            Project description:" +
+                                    userDesc)
+                            .call()
+                            .content();
+                    project1.setProjectDescription(enhancedDesc);
+                }
+                catch(Exception e){
+                    System.err.println("AI failed to load" + e.getMessage());
+                    project1.setProjectDescription(userDesc);
+                }
                 project1.setUserDetails(userDetails);
             }
         }
