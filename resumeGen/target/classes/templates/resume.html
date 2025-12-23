@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Resume</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            color: #111;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 10mm auto;
+            background: #ffffff;
+            padding: 18mm;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        h2 {
+            margin-top: 18px;
+            font-size: 15px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .contact {
+            font-size: 12.5px;
+            margin-top: 6px;
+        }
+
+        .summary {
+            font-size: 13px;
+            margin-top: 12px;
+            line-height: 1.4;
+        }
+
+        .section {
+            margin-top: 14px;
+        }
+
+        .item {
+            margin-bottom: 10px;
+        }
+
+        .title {
+            font-weight: bold;
+            font-size: 13.5px;
+        }
+
+        .subtitle {
+            font-size: 12.5px;
+            font-style: italic;
+        }
+
+        ul {
+            margin: 6px 0 0 18px;
+            padding: 0;
+        }
+
+        li {
+            font-size: 12.5px;
+            margin-bottom: 4px;
+        }
+
+        .meta {
+            font-size: 12.5px;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="page">
+
+    <!-- ================= HEADER ================= -->
+    <h1 th:text="${firstName + ' ' + lastName}"></h1>
+
+    <div class="contact">
+        <span th:text="${userMail}"></span> |
+        <span th:text="${mobileNumber}"></span> |
+        <span th:text="${userLocation}"></span> |
+        <span th:text="${linkedInUrl}"></span> |
+        <span th:text="${gitHubUrl}"></span> |
+        <span th:text="${otherUrl}"></span>
+    </div>
+
+    <!-- ================= EDUCATION ================= -->
+    <section class="section">
+        <h2>Education</h2>
+
+        <div th:each="edu : ${userEducationList}" class="item">
+            <div class="title"
+                 th:text="${edu.userDegree + ' - ' + edu.userBranch}">
+            </div>
+            <div class="subtitle">
+                <span th:text="${edu.collegeName}"></span> |
+                <span th:text="${edu.graduationYear}"></span> |
+                CGPA:
+                <span th:text="${edu.userCgpa}"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= EXPERIENCE ================= -->
+    <section class="section">
+        <h2>Experience</h2>
+
+        <div th:each="exp : ${userExperienceList}" class="item">
+            <div class="title"
+                 th:text="${exp.userRole + ' - ' + exp.companyName}">
+            </div>
+            <div class="subtitle">
+                <span th:text="${exp.yearsOfExperience}"></span>
+                <span>Year(s)</span>
+            </div>
+            <ul>
+                <li th:text="${exp.userResponsibilities}"></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ================= PROJECTS ================= -->
+    <section class="section">
+        <h2>Projects</h2>
+
+        <div th:each="proj : ${userProjectsList}" class="item">
+            <div class="title" th:text="${proj.projectName}"></div>
+
+            <ul>
+                <li th:text="${proj.projectDescription}"></li>
+            </ul>
+
+            <div class="meta">
+                <strong>Tech Stack:</strong>
+                <span th:text="${proj.projectTechStack}"></span>
+            </div>
+
+            <div class="meta">
+                <strong>Tools:</strong>
+                <span th:text="${proj.projectToolsUsed}"></span>
+            </div>
+
+            <div class="meta">
+                <strong>GitHub:</strong>
+                <span th:text="${proj.projectGitHubLink}"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= CERTIFICATIONS ================= -->
+    <section class="section">
+        <h2>Certifications</h2>
+
+        <div th:each="cert : ${userCertificationList}" class="item">
+            <div class="title" th:text="${cert.certificateName}"></div>
+            <div class="subtitle">
+                <span th:text="${cert.certificateProvider}"></span> |
+                Valid Till:
+                <span th:text="${cert.validityDate}"></span>
+            </div>
+            <div class="meta">
+                License:
+                <span th:text="${cert.licenceNumber}"></span> |
+                <span th:text="${cert.certificateUrl}"></span>
+            </div>
+        </div>
+    </section>
+
+</div>
+</body>
+</html>

@@ -8,6 +8,6 @@ class ResumeGenApplicationTests {
 
 	@Test
 	void contextLoads() {
-	}
 
+	}
 }

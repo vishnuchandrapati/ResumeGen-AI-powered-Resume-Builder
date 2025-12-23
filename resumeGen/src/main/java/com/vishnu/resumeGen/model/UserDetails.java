@@ -74,6 +74,14 @@ public class UserDetails {
         this.lastName = lastName;
     }
 
+    @Transient
+    public String getFullName() {
+        return (firstName != null ? firstName : "") +
+                " " +
+                (lastName != null ? lastName : "");
+    }
+
+
     public int getUserAge() {
         return userAge;
     }

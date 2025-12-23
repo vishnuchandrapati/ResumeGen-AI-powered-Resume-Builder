@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Resume Preview</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+        }
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 10mm auto;
+            background: white;
+            padding: 20mm;
+            box-sizing: border-box;
+            page-break-after: always;
+        }
+        h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+        h2 {
+            font-size: 16px;
+            border-bottom: 2px solid #333;
+            margin-top: 20px;
+            padding-bottom: 4px;
+        }
+        .contact {
+            margin-top: 8px;
+            font-size: 13px;
+        }
+        .section-item {
+            margin-bottom: 12px;
+        }
+        .title {
+            font-weight: bold;
+        }
+        .subtitle {
+            font-style: italic;
+            font-size: 13px;
+        }
+        ul {
+            margin: 6px 0 0 18px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="page">
+
+    <!-- HEADER -->
+    <h1 th:text="${user.fullName}">Full Name</h1>
+
+    <div class="contact">
+        <span th:text="${user.userMail}">email@example.com</span> |
+        <span th:text="${user.mobileNumber}">9999999999</span> |
+        <span th:text="${user.userLocation}">Location</span>
+        <br/>
+        <span th:if="${user.linkedInUrl}">LinkedIn: <span th:text="${user.linkedInUrl}"></span></span>
+        <span th:if="${user.gitHubUrl}"> | GitHub: <span th:text="${user.gitHubUrl}"></span></span>
+    </div>
+
+    <!-- EDUCATION -->
+    <h2>Education</h2>
+    <div th:each="edu : ${user.userEducationList}" class="section-item">
+        <div class="title" th:text="${edu.degree}">Degree</div>
+        <div class="subtitle">
+            <span th:text="${edu.institution}">Institution</span> |
+            <span th:text="${edu.yearOfPassing}">Year</span>
+        </div>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <h2>Experience</h2>
+    <div th:each="exp : ${user.userExperienceList}" class="section-item">
+        <div class="title" th:text="${exp.role}">Role</div>
+        <div class="subtitle">
+            <span th:text="${exp.companyName}">Company</span> |
+            <span th:text="${exp.duration}">Duration</span>
+        </div>
+        <ul>
+            <li th:text="${exp.description}">Worked on backend services</li>
+        </ul>
+    </div>
+
+    <!-- PROJECTS -->
+    <h2>Projects</h2>
+    <div th:each="proj : ${user.userProjectsList}" class="section-item">
+        <div class="title" th:text="${proj.projectTitle}">Project Title</div>
+        <ul>
+            <li th:text="${proj.projectDescription}">Description</li>
+        </ul>
+    </div>
+
+    <!-- CERTIFICATIONS -->
+    <h2>Certifications</h2>
+    <div th:each="cert : ${user.userCertificationList}" class="section-item">
+        <span th:text="${cert.certificationName}">Certification</span>
+    </div>
+
+</div>
+
+</body>
+</html>
