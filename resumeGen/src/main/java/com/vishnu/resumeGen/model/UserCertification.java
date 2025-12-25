@@ -4,7 +4,7 @@ package com.vishnu.resumeGen.model;
 import jakarta.persistence.*;
 
 @Entity
-public class userCertification {
+public class UserCertification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cer_id;
@@ -14,14 +14,14 @@ public class userCertification {
     private String validityDate;
     private String licenceNumber;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_mail", referencedColumnName = "userMail") // FK column in user_certification table
+    @JoinColumn(name = "user_id", nullable = true) // FK column in user_certification table
     private UserDetails userDetails;
-    public userCertification() {
+    public UserCertification() {
     }
 
 
 
-    public userCertification(String certificateName, String certificateProvider, String certificateUrl, String validityDate, String licenceNumber) {
+    public UserCertification(String certificateName, String certificateProvider, String certificateUrl, String validityDate, String licenceNumber) {
         this.certificateName = certificateName;
         this.certificateProvider = certificateProvider;
         this.certificateUrl = certificateUrl;
