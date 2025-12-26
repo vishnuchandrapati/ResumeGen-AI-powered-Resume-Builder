@@ -4,9 +4,6 @@ import com.vishnu.resumeGen.model.*;
 import com.vishnu.resumeGen.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import java.util.Optional;
 
 @Service
 public class UserDetailsService {
@@ -17,11 +14,9 @@ public class UserDetailsService {
         this.userRepo = userRepo;
     }
 
-
-
     public UserDetails saveUser(UserDetails userDetails){
         if (userDetails.getUserEducationList() != null) {
-            for (userEducation edu : userDetails.getUserEducationList()) {
+            for (UserEducation edu : userDetails.getUserEducationList()) {
                 edu.setUserDetails(userDetails);
             }
         }
@@ -32,16 +27,18 @@ public class UserDetailsService {
         }
 
         if(userDetails.getUserCertificationList() != null){
-            for(userCertification cert : userDetails.getUserCertificationList()){
+            for(UserCertification cert : userDetails.getUserCertificationList()){
                 cert.setUserDetails(userDetails);
             }
         }
 
         if(userDetails.getUserExperienceList() != null){
-            for(userExperience exp : userDetails.getUserExperienceList()){
+            for(UserExperience exp : userDetails.getUserExperienceList()){
                 exp.setUserDetails(userDetails);
             }
         }
+
+
         return userRepo.save(userDetails);
     }
 

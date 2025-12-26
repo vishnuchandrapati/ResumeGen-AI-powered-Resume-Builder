@@ -14,7 +14,7 @@ public class UserCertification {
     private String validityDate;
     private String licenceNumber;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = true) // FK column in user_certification table
+    @JoinColumn(name = "user_mail", referencedColumnName = "userMail") // FK column in user_certification table
     private UserDetails userDetails;
     public UserCertification() {
     }

@@ -1,6 +1,7 @@
 package com.vishnu.resumeGen.service;
 
 import com.vishnu.resumeGen.model.UserDetails;
+import com.vishnu.resumeGen.model.UserEducation;
 import com.vishnu.resumeGen.model.userProject;
 import com.vishnu.resumeGen.repository.UserRepo;
 import org.springframework.ai.chat.client.ChatClient;
@@ -24,6 +25,15 @@ public class UserService {
 
     public UserDetails autoSaveandAutoEnhancedDescription(UserDetails userDetails){
 
+        if(userDetails.getUserEducationList()!=null){
+            userDetails.getUserEducationList().forEach(edu -> edu.setUserDetails(userDetails));
+        }
+        if(userDetails.getUserExperienceList()!=null){
+            userDetails.getUserExperienceList().forEach(exp -> exp.setUserDetails(userDetails));
+        }
+        if(userDetails.getUserCertificationList()!=null){
+            userDetails.getUserCertificationList().forEach(cert -> cert.setUserDetails(userDetails));
+        }
         if(userDetails.getUserProjectsList()!=null){
             for(userProject project1 : userDetails.getUserProjectsList()){
                 String userDesc = project1.getProjectDescription();

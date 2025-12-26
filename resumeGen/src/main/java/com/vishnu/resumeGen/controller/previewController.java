@@ -22,8 +22,6 @@ public class previewController{
 public String loadResumeAfterLogin(
         @RequestParam String mail, Model model) {
 
-//    String email = principal.getName(); // or userId
-
     UserDetails user = userRepo.findByUserMail(mail);
 
     if (user == null) {
