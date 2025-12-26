@@ -10,7 +10,7 @@
             margin: 0;
             padding: 0;
             background: #f4f4f4;
-            color: #111;
+            color: #222;
         }
 
         .page {
@@ -18,33 +18,25 @@
             min-height: 297mm;
             margin: 10mm auto;
             background: #ffffff;
-            padding: 18mm;
+            padding: 20mm;
             box-sizing: border-box;
         }
 
         h1 {
             margin: 0;
-            font-size: 26px;
-            font-weight: bold;
+            font-size: 28px;
         }
 
         h2 {
             margin-top: 18px;
-            font-size: 15px;
-            border-bottom: 2px solid #000;
+            font-size: 16px;
+            border-bottom: 2px solid #333;
             padding-bottom: 4px;
-            text-transform: uppercase;
         }
 
         .contact {
-            font-size: 12.5px;
-            margin-top: 6px;
-        }
-
-        .summary {
+            margin-top: 8px;
             font-size: 13px;
-            margin-top: 12px;
-            line-height: 1.4;
         }
 
         .section {
@@ -52,17 +44,18 @@
         }
 
         .item {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .title {
             font-weight: bold;
-            font-size: 13.5px;
+            font-size: 14px;
         }
 
         .subtitle {
-            font-size: 12.5px;
             font-style: italic;
+            font-size: 13px;
+            color: #555;
         }
 
         ul {
@@ -71,13 +64,8 @@
         }
 
         li {
-            font-size: 12.5px;
+            font-size: 13px;
             margin-bottom: 4px;
-        }
-
-        .meta {
-            font-size: 12.5px;
-            margin-top: 4px;
         }
     </style>
 </head>
@@ -86,22 +74,35 @@
 <div class="page">
 
     <!-- ================= HEADER ================= -->
-    <h1 th:text="${firstName + ' ' + lastName}"></h1>
+    <h1 th:text="${user.firstName + ' ' + user.lastName}"
+        th:if="${user.firstName != null}">
+    </h1>
 
-    <div class="contact">
-        <span th:text="${userMail}"></span> |
-        <span th:text="${mobileNumber}"></span> |
-        <span th:text="${userLocation}"></span> |
-        <span th:text="${linkedInUrl}"></span> |
-        <span th:text="${gitHubUrl}"></span> |
-        <span th:text="${otherUrl}"></span>
+    <div class="contact" th:if="${user.userMail != null}">
+        <span th:text="${user.userMail}"></span>
+        <span th:if="${user.mobileNumber != null}">
+            | <span th:text="${user.mobileNumber}"></span>
+        </span>
+        <span th:if="${user.userLocation != null}">
+            | <span th:text="${user.userLocation}"></span>
+        </span>
+        <span th:if="${user.linkedInUrl != null}">
+            | <span th:text="${user.linkedInUrl}"></span>
+        </span>
+        <span th:if="${user.gitHubUrl != null}">
+            | <span th:text="${user.gitHubUrl}"></span>
+        </span>
+        <span th:if="${user.otherUrl != null}">
+            | <span th:text="${user.otherUrl}"></span>
+        </span>
     </div>
 
     <!-- ================= EDUCATION ================= -->
-    <section class="section">
+    <section class="section"
+             th:if="${user.userEducationList != null and !user.userEducationList.isEmpty()}">
         <h2>Education</h2>
 
-        <div th:each="edu : ${userEducationList}" class="item">
+        <div th:each="edu : ${user.userEducationList}" class="item">
             <div class="title"
                  th:text="${edu.userDegree + ' - ' + edu.userBranch}">
             </div>
@@ -115,16 +116,16 @@
     </section>
 
     <!-- ================= EXPERIENCE ================= -->
-    <section class="section">
+    <section class="section"
+             th:if="${user.userExperienceList != null and !user.userExperienceList.isEmpty()}">
         <h2>Experience</h2>
 
-        <div th:each="exp : ${userExperienceList}" class="item">
+        <div th:each="exp : ${user.userExperienceList}" class="item">
             <div class="title"
                  th:text="${exp.userRole + ' - ' + exp.companyName}">
             </div>
             <div class="subtitle">
-                <span th:text="${exp.yearsOfExperience}"></span>
-                <span>Year(s)</span>
+                <span th:text="${exp.yearsOfExperience}"></span> Year(s)
             </div>
             <ul>
                 <li th:text="${exp.userResponsibilities}"></li>
@@ -133,48 +134,51 @@
     </section>
 
     <!-- ================= PROJECTS ================= -->
-    <section class="section">
+    <section class="section"
+             th:if="${user.userProjectsList != null and !user.userProjectsList.isEmpty()}">
         <h2>Projects</h2>
 
-        <div th:each="proj : ${userProjectsList}" class="item">
+        <div th:each="proj : ${user.userProjectsList}" class="item">
             <div class="title" th:text="${proj.projectName}"></div>
 
             <ul>
                 <li th:text="${proj.projectDescription}"></li>
             </ul>
 
-            <div class="meta">
-                <strong>Tech Stack:</strong>
+            <div class="subtitle"
+                 th:if="${proj.projectTechStack != null}">
+                Tech Stack:
                 <span th:text="${proj.projectTechStack}"></span>
             </div>
 
-            <div class="meta">
-                <strong>Tools:</strong>
+            <div class="subtitle"
+                 th:if="${proj.projectToolsUsed != null}">
+                Tools:
                 <span th:text="${proj.projectToolsUsed}"></span>
             </div>
 
-            <div class="meta">
-                <strong>GitHub:</strong>
+            <div class="subtitle"
+                 th:if="${proj.projectGitHubLink != null}">
+                GitHub:
                 <span th:text="${proj.projectGitHubLink}"></span>
             </div>
         </div>
     </section>
 
     <!-- ================= CERTIFICATIONS ================= -->
-    <section class="section">
+    <section class="section"
+             th:if="${user.userCertificationList != null and !user.userCertificationList.isEmpty()}">
         <h2>Certifications</h2>
 
-        <div th:each="cert : ${userCertificationList}" class="item">
+        <div th:each="cert : ${user.userCertificationList}" class="item">
             <div class="title" th:text="${cert.certificateName}"></div>
             <div class="subtitle">
                 <span th:text="${cert.certificateProvider}"></span> |
-                Valid Till:
                 <span th:text="${cert.validityDate}"></span>
             </div>
-            <div class="meta">
+            <div class="subtitle">
                 License:
-                <span th:text="${cert.licenceNumber}"></span> |
-                <span th:text="${cert.certificateUrl}"></span>
+                <span th:text="${cert.licenceNumber}"></span>
             </div>
         </div>
     </section>

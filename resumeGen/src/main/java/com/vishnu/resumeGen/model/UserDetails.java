@@ -25,7 +25,7 @@ public class UserDetails {
     private String otherUrl;
 
     @OneToMany(mappedBy = "userDetails", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<userEducation> userEducationList;
+    private List<UserEducation> userEducationList;
 
     @OneToMany(mappedBy = "userDetails", cascade = CascadeType.ALL, orphanRemoval = true)
 
@@ -33,16 +33,16 @@ public class UserDetails {
 
     @OneToMany(mappedBy = "userDetails", cascade = CascadeType.ALL, orphanRemoval = true)
 
-    private List<userExperience> userExperienceList;
+    private List<UserExperience> userExperienceList;
 
     @OneToMany(mappedBy = "userDetails", cascade = CascadeType.ALL, orphanRemoval = true)
 
-    private List<userCertification> userCertificationList;
+    private List<UserCertification> userCertificationList;
 
     public UserDetails() {
     }
 
-    public UserDetails(String firstName, String lastName, int userAge, String userMail, String mobileNumber, String userLocation, String linkedInUrl, String gitHubUrl, String otherUrl, List<userEducation> userEducationList, List<userProject> userProjectsList, List<userExperience> userExperienceList, List<userCertification> userCertificationList) {
+    public UserDetails(String firstName, String lastName, int userAge, String userMail, String mobileNumber, String userLocation, String linkedInUrl, String gitHubUrl, String otherUrl, List<UserEducation> userEducationList, List<userProject> userProjectsList, List<UserExperience> userExperienceList, List<UserCertification> userCertificationList) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userAge = userAge;
@@ -139,11 +139,11 @@ public class UserDetails {
         this.otherUrl = otherUrl;
     }
 
-    public List<userEducation> getUserEducationList() {
+    public List<UserEducation> getUserEducationList() {
         return userEducationList;
     }
 
-    public void setUserEducationList(List<userEducation> userEducationList) {
+    public void setUserEducationList(List<UserEducation> userEducationList) {
         this.userEducationList = userEducationList;
     }
 
@@ -155,19 +155,19 @@ public class UserDetails {
         this.userProjectsList = userProjectsList;
     }
 
-    public List<userExperience> getUserExperienceList() {
+    public List<UserExperience> getUserExperienceList() {
         return userExperienceList;
     }
 
-    public void setUserExperienceList(List<userExperience> userExperienceList) {
+    public void setUserExperienceList(List<UserExperience> userExperienceList) {
         this.userExperienceList = userExperienceList;
     }
 
-    public List<userCertification> getUserCertificationList() {
+    public List<UserCertification> getUserCertificationList() {
         return userCertificationList;
     }
 
-    public void setUserCertificationList(List<userCertification> userCertificationList) {
+    public void setUserCertificationList(List<UserCertification> userCertificationList) {
         this.userCertificationList = userCertificationList;
     }
 }

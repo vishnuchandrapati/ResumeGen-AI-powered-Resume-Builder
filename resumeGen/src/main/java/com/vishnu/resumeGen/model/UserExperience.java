@@ -4,7 +4,7 @@ package com.vishnu.resumeGen.model;
 import jakarta.persistence.*;
 
 @Entity
-public class userExperience {
+public class UserExperience {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long exp_id;
@@ -15,10 +15,10 @@ public class userExperience {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_mail", referencedColumnName = "userMail") // FK column in user_certification table
     private UserDetails userDetails;
-    public userExperience() {
+    public UserExperience() {
     }
 
-    public userExperience(String companyName, String userRole, int yearsOfExperience, String userResponsibilities) {
+    public UserExperience(String companyName, String userRole, int yearsOfExperience, String userResponsibilities) {
         this.companyName = companyName;
         this.userRole = userRole;
         this.yearsOfExperience = yearsOfExperience;

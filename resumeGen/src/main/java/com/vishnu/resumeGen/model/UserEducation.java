@@ -4,7 +4,7 @@ package com.vishnu.resumeGen.model;
 import jakarta.persistence.*;
 
 @Entity
-public class userEducation {
+public class UserEducation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,15 +15,15 @@ public class userEducation {
     private int graduationYear;
     private String userCgpa;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_mail", referencedColumnName = "userMail") // FK column in user_certification table
+    @JoinColumn(name = "user_mail", referencedColumnName = "userMail")
     private UserDetails userDetails;
 
 
 
-    public userEducation() {
+    public UserEducation() {
     }
 
-    public userEducation(String collegeName, String userDegree, String userBranch, int graduationYear, String userCgpa) {
+    public UserEducation(String collegeName, String userDegree, String userBranch, int graduationYear, String userCgpa) {
         this.collegeName = collegeName;
         this.userDegree = userDegree;
         this.userBranch = userBranch;
@@ -73,6 +73,10 @@ public class userEducation {
 
     public void setUserDetails(UserDetails userDetails) {
         this.userDetails = userDetails;
+    }
+
+    public UserDetails getUserDetails(){
+        return userDetails;
     }
 
 }
